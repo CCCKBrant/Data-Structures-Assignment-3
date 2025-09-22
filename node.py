@@ -28,3 +28,9 @@ class Node:
 # can't offer. They store data in a certain order by which they can be utilized.
 # Which allows us to use these classes in specific scenarios that will benefit us
 # the most in how we store data. 
+
+
+#Side Note: I used ChatGPT to help me figure out how to push an action from the undo stack
+# and pop it from the redo stack. After I figured that out, I was able to do the peek at the
+# next customer and return their name in help desk all by myself using what I learned from Chat
+# GPT.
