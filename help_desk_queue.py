@@ -1,15 +1,49 @@
 # Import the Node class you created in node.py
-from node import Node
-
+class Node:
+    def __init__(self, value):
+        self.value = value   # store the data
+        self.next = None
 # Implement your Queue class here
 class Queue:
-    # Delete the following line and implement your Queue class
-    pass
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def enqueue(self, value):
+        new_node = Node(value)
+        if not self.front:
+            self.front = new_node
+            self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+    
+    def dequeue(self):
+        if not self.front:
+            return None
+        removed_node = self.front
+        self.front = self.front.next
+        if not self.front:
+            self.rear = None
+        return removed_node.value
+    def peek(self):
+        if self.front:
+            return self.front.value
+        else:
+            return None
+	
+    def print_queue(self):
+        current = self.front
+        if not current:
+            print("Queue is empty")
+            return
+        while current:
+            print(f"- {current.value}")
+            current = current.next # Update current to next value
     
 
-
 def run_help_desk():
-    # Create an instance of the Queue class
+    my_queue = Queue()
     
 
     while True:
@@ -23,23 +57,32 @@ def run_help_desk():
 
         if choice == "1":
             name = input("Enter customer name: ")
-            # Add the customer to the queue
-            
-            
+            my_queue.enqueue(name)
             print(f"{name} added to the queue.")
         elif choice == "2":
-            # Help the next customer in the queue and return message that they were helped
-            pass # delete this line
+            #Help the next customer in the queue and return message that they were helped
+            name = my_queue.dequeue()
+            if name:
+                print(f"{name} has been helped, and removed from the queue.")
+            else:
+                print("There are no customers in the queue.")
+           
 
 
         elif choice == "3":
             # Peek at the next customer in the queue and return their name
+            name = my_queue.peek()
+            if name:
+                print(f"{name} is next in the queue.")
+            else:
+                print("There are no customers in the queue.")
             pass # delete this line
 
 
         elif choice == "4":
-            # Print all customers in the queue
             print("\nWaiting customers:")
+            my_queue.print_queue()
+            
             
 
         elif choice == "5":
